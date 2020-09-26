@@ -17,6 +17,9 @@
 		5D54FAD3251C35560038F0B7 /* SearchUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D54FAD1251C35560038F0B7 /* SearchUserTableViewCell.xib */; };
 		5D54FAD7251C35B30038F0B7 /* SearchUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54FAD6251C35B30038F0B7 /* SearchUserViewController.swift */; };
 		5DB08CE9251D947E009EE0CE /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB08CE8251D947E009EE0CE /* UserDetailViewController.swift */; };
+		5DB08CF4251DC759009EE0CE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB08CF3251DC759009EE0CE /* UserModel.swift */; };
+		5DB08CF7251DCB6F009EE0CE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB08CF6251DCB6F009EE0CE /* UserData.swift */; };
+		5DB08CFF251DD3A3009EE0CE /* SearchUserViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB08CFE251DD3A3009EE0CE /* SearchUserViewPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		5D54FAD1251C35560038F0B7 /* SearchUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchUserTableViewCell.xib; sourceTree = "<group>"; };
 		5D54FAD6251C35B30038F0B7 /* SearchUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewController.swift; sourceTree = "<group>"; };
 		5DB08CE8251D947E009EE0CE /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		5DB08CF3251DC759009EE0CE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		5DB08CF6251DCB6F009EE0CE /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		5DB08CFE251DD3A3009EE0CE /* SearchUserViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,9 @@
 			children = (
 				5D54FAB3251C33D10038F0B7 /* AppDelegate.swift */,
 				5D54FAB5251C33D10038F0B7 /* SceneDelegate.swift */,
+				5DB08CF6251DCB6F009EE0CE /* UserData.swift */,
+				5DB08CFC251DD029009EE0CE /* Presenter */,
+				5DB08CF2251DBDF6009EE0CE /* Models */,
 				5D54FAD9251C44110038F0B7 /* Views */,
 				5D54FABF251C33D30038F0B7 /* Assets.xcassets */,
 				5D54FAC1251C33D30038F0B7 /* LaunchScreen.storyboard */,
@@ -109,6 +118,22 @@
 				5DB08CE8251D947E009EE0CE /* UserDetailViewController.swift */,
 			);
 			path = UserDetail;
+			sourceTree = "<group>";
+		};
+		5DB08CF2251DBDF6009EE0CE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5DB08CF3251DC759009EE0CE /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5DB08CFC251DD029009EE0CE /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				5DB08CFE251DD3A3009EE0CE /* SearchUserViewPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +208,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D54FAB4251C33D10038F0B7 /* AppDelegate.swift in Sources */,
+				5DB08CF4251DC759009EE0CE /* UserModel.swift in Sources */,
+				5DB08CFF251DD3A3009EE0CE /* SearchUserViewPresenter.swift in Sources */,
+				5DB08CF7251DCB6F009EE0CE /* UserData.swift in Sources */,
 				5D54FAB6251C33D10038F0B7 /* SceneDelegate.swift in Sources */,
 				5DB08CE9251D947E009EE0CE /* UserDetailViewController.swift in Sources */,
 				5D54FAD7251C35B30038F0B7 /* SearchUserViewController.swift in Sources */,

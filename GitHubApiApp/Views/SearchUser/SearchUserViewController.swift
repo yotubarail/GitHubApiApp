@@ -9,7 +9,13 @@ import UIKit
 
 class SearchUserViewController: UIViewController {
     
+    //MARK: - Vars
+    
+//    private(set) var presenter; SearchUserViewPresenter!
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    var fetcher = UserModel()
     
     let stringArray = ["1", "2", "3"]
 
