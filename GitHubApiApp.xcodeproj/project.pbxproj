@@ -20,6 +20,7 @@
 		5DB08CF4251DC759009EE0CE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB08CF3251DC759009EE0CE /* UserModel.swift */; };
 		5DB08CF7251DCB6F009EE0CE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB08CF6251DCB6F009EE0CE /* UserData.swift */; };
 		5DB08CFF251DD3A3009EE0CE /* SearchUserViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB08CFE251DD3A3009EE0CE /* SearchUserViewPresenter.swift */; };
+		5DB08D0725208578009EE0CE /* UIImageExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB08D0625208577009EE0CE /* UIImageExtention.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		5DB08CF3251DC759009EE0CE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5DB08CF6251DCB6F009EE0CE /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		5DB08CFE251DD3A3009EE0CE /* SearchUserViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewPresenter.swift; sourceTree = "<group>"; };
+		5DB08D0625208577009EE0CE /* UIImageExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtention.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				5D54FAB3251C33D10038F0B7 /* AppDelegate.swift */,
 				5D54FAB5251C33D10038F0B7 /* SceneDelegate.swift */,
 				5DB08CF6251DCB6F009EE0CE /* UserData.swift */,
+				5DB08D0525208548009EE0CE /* Extentions */,
 				5DB08CFC251DD029009EE0CE /* Presenter */,
 				5DB08CF2251DBDF6009EE0CE /* Models */,
 				5D54FAD9251C44110038F0B7 /* Views */,
@@ -134,6 +137,14 @@
 				5DB08CFE251DD3A3009EE0CE /* SearchUserViewPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		5DB08D0525208548009EE0CE /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				5DB08D0625208577009EE0CE /* UIImageExtention.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +226,7 @@
 				5DB08CE9251D947E009EE0CE /* UserDetailViewController.swift in Sources */,
 				5D54FAD7251C35B30038F0B7 /* SearchUserViewController.swift in Sources */,
 				5D54FABE251C33D10038F0B7 /* GitHubApiApp.xcdatamodeld in Sources */,
+				5DB08D0725208578009EE0CE /* UIImageExtention.swift in Sources */,
 				5D54FAD2251C35560038F0B7 /* SearchUserTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

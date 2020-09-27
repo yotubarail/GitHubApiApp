@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct UserData: Decodable,Identifiable {
+struct SearchResult: Codable {
+    var items: [UserData]
+}
+
+struct UserData: Codable, Identifiable, Equatable {
     
     var id: Int
     var login: String
