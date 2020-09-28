@@ -14,9 +14,10 @@ struct SearchResult: Codable {
 struct UserData: Codable, Identifiable, Equatable {
     
     var id: Int
-    var login: String
-    var avatarUrl: String
-    var type: String
+    var login: String!
+    var avatarUrl: String!
+    var type: String!
+    var url: String!
     
     
     enum CodingKeys: String, CodingKey {
@@ -25,5 +26,6 @@ struct UserData: Codable, Identifiable, Equatable {
         case login = "login"
         case avatarUrl = "avatar_url"
         case type = "type"
+        case url = "html_url"
     }
 }

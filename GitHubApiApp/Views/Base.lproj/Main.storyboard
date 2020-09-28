@@ -58,6 +58,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="xE9-hI-b05"/>
                     <connections>
+                        <outlet property="searchBar" destination="Wxj-SM-tud" id="hXa-pz-4tY"/>
                         <outlet property="tableView" destination="qG7-j5-WTi" id="YRI-9d-E4G"/>
                         <segue destination="TlT-tN-dA4" kind="show" identifier="showUserDetail" id="0hU-Ui-nHN"/>
                     </connections>
@@ -69,7 +70,6 @@
         <!--User Detail View Controller-->
         <scene sceneID="oXq-Yh-DFS">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JDw-Cf-yOF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="TlT-tN-dA4" customClass="UserDetailViewController" customModule="GitHubApiApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uy3-7e-oYC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -79,6 +79,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Y2g-mH-vYO"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JDw-Cf-yOF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="622" y="119"/>
         </scene>

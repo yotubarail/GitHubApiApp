@@ -10,8 +10,8 @@ import WebKit
 
 class UserDetailViewController: UIViewController {
     
-    let userUrl = "https://st2121.web.fc2.com"
     var webView: WKWebView!
+    var userUrl: String!
 
     //MARK: - View LifeCycle
     override func viewDidLoad() {

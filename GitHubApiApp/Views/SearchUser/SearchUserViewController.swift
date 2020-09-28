@@ -13,12 +13,15 @@ class SearchUserViewController: UIViewController {
     
 //    private(set) var presenter; SearchUserViewPresenter!
     
-//    var fetcher = UserModel()
+    var fetcher = UserModel()
     var userData: [UserData] = []
+    var selectedUrl: String!
     
     //MARK: - IBOutlet
+    
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     //MARK: - View LifeCycle
     
     override func viewDidLoad() {
@@ -31,8 +34,16 @@ class SearchUserViewController: UIViewController {
         let cellNib = UINib(nibName: "SearchUserTableViewCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "Cell")
         
+        searchBar.delegate = self
+        
 //        fetcher.fetchUserData()
-        guard let url = URL(string: "https://api.github.com/search/users?q=yotubarail") else {
+        searchData()
+        
+        navigationItem.title = "Search User"
+    }
+    
+    func searchData() {
+        guard let url = URL(string: "https://api.github.com/search/users?q=\(searchBar.text ?? "")") else {
             return
         }
         var request = URLRequest(url: url)
@@ -52,10 +63,9 @@ class SearchUserViewController: UIViewController {
             }
         })
         task.resume()
-
-        navigationItem.title = "Search User"
     }
 }
+
 
 //MARK: - taleView DataSource
 
@@ -76,6 +86,7 @@ extension SearchUserViewController: UITableViewDataSource {
     }
 }
 
+
 //MARK: - tableView Delegate
 
 extension SearchUserViewController: UITableViewDelegate {
@@ -83,10 +94,40 @@ extension SearchUserViewController: UITableViewDelegate {
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
+        selectedUrl = userData[indexPath.row].url
         performSegue(withIdentifier: "showUserDetail", sender: nil)
     }
         
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
+        if segue.identifier == "showUserDetail" {
+            let userDetailVC: UserDetailViewController = segue.destination as! UserDetailViewController
+            userDetailVC.userUrl = selectedUrl!
+        }
+    }
+}
+
+
+//MARK: - searchBar Delegate
+
+extension SearchUserViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.endEditing(true)
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.endEditing(true)
+        searchBar.text = ""
+        searchBar.setShowsCancelButton(false, animated: true)
     }
 }
