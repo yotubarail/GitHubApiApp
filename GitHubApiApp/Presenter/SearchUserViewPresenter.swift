@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+final class SearchUserViewPresenter {
+    
+    var model: SearchModelInput?
+
+    func didTappedSearchButton(searchText: String) {
+        model?.fetchUserData(text: searchText)
+        print(searchText)
+    }
+   
+}

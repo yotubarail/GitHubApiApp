@@ -7,13 +7,19 @@
 
 import Foundation
 
-class UserModel {
+protocol SearchModelInput{
+
+    func fetchUserData(text:String)
+}
+
+
+class UserModel: SearchModelInput {
     
-    var userData: [UserData] = []
+    var userData: [SearchResult.UserData] = []
 
-    func fetchUserData() {
+    func fetchUserData(text: String) {
 
-        guard let url = URL(string: "https://api.github.com/users?q=tom") else {
+        guard let url = URL(string: "https://api.github.com/users?q=\(text)") else {
             return
         }
         var request = URLRequest(url: url)
@@ -21,7 +27,7 @@ class UserModel {
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             if let data = data {
                 do {
-                    let searchedUserData = try JSONDecoder().decode([UserData].self, from: data)
+                    let searchedUserData = try JSONDecoder().decode([SearchResult.UserData].self, from: data)
                     DispatchQueue.main.async {
                         self.userData = searchedUserData
                         dump(self.userData)

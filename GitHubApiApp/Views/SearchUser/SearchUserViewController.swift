@@ -11,10 +11,9 @@ class SearchUserViewController: UIViewController {
     
     //MARK: - Vars
     
-//    private(set) var presenter; SearchUserViewPresenter!
-    
-    var fetcher = UserModel()
-    var userData: [UserData] = []
+    var model = [UserModel]()
+    private var presenter = SearchUserViewPresenter()
+    var userData: [SearchResult.UserData] = []
     var selectedUrl: String!
     
     //MARK: - IBOutlet
@@ -36,33 +35,15 @@ class SearchUserViewController: UIViewController {
         
         searchBar.delegate = self
         
-//        fetcher.fetchUserData()
-        searchData()
-        
+        presenter.model = self
+                
         navigationItem.title = "Search User"
     }
-    
-    func searchData() {
-        guard let url = URL(string: "https://api.github.com/search/users?q=\(searchBar.text ?? "")") else {
-            return
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-            if let data = data {
-                do {
-                    let searchedUserData = try JSONDecoder().decode(SearchResult.self, from: data).items
-                    DispatchQueue.main.async {
-                        self.userData = searchedUserData
-                        self.tableView.reloadData()
-                        dump(self.userData)
-                    }
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        })
-        task.resume()
+}
+
+extension SearchUserViewController: SearchModelInput {
+    func fetchUserData(text: String) {
+        
     }
 }
 
@@ -120,8 +101,9 @@ extension SearchUserViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         searchBar.endEditing(true)
+        guard let text = searchBar.text else {return}
+        presenter.didTappedSearchButton(searchText: text)
         searchBar.setShowsCancelButton(false, animated: true)
-        searchData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

@@ -74,7 +74,6 @@
 			children = (
 				5D54FAB3251C33D10038F0B7 /* AppDelegate.swift */,
 				5D54FAB5251C33D10038F0B7 /* SceneDelegate.swift */,
-				5DB08CF6251DCB6F009EE0CE /* UserData.swift */,
 				5DB08D0525208548009EE0CE /* Extentions */,
 				5DB08CFC251DD029009EE0CE /* Presenter */,
 				5DB08CF2251DBDF6009EE0CE /* Models */,
@@ -126,6 +125,7 @@
 		5DB08CF2251DBDF6009EE0CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5DB08CF6251DCB6F009EE0CE /* UserData.swift */,
 				5DB08CF3251DC759009EE0CE /* UserModel.swift */,
 			);
 			path = Models;
