@@ -11,10 +11,11 @@ class SearchUserViewController: UIViewController {
     
     //MARK: - Vars
     
-    var model = [UserModel]()
+    var model = UserModel()
     private var presenter = SearchUserViewPresenter()
-    var userData: [SearchResult.UserData] = []
+    var userData = [SearchResult.UserData]()
     var selectedUrl: String!
+    var userName: String!
     
     //MARK: - IBOutlet
     
@@ -36,12 +37,14 @@ class SearchUserViewController: UIViewController {
         searchBar.delegate = self
         
         presenter.model = self
+        model.fetchUserData(text: "")
                 
         navigationItem.title = "Search User"
     }
 }
 
 extension SearchUserViewController: SearchModelInput {
+    
     func fetchUserData(text: String) {
         
     }
@@ -76,6 +79,7 @@ extension SearchUserViewController: UITableViewDelegate {
         
         tableView.deselectRow(at: indexPath, animated: true)
         selectedUrl = userData[indexPath.row].url
+        userName = userData[indexPath.row].login
         performSegue(withIdentifier: "showUserDetail", sender: nil)
     }
         
@@ -84,6 +88,7 @@ extension SearchUserViewController: UITableViewDelegate {
         if segue.identifier == "showUserDetail" {
             let userDetailVC: UserDetailViewController = segue.destination as! UserDetailViewController
             userDetailVC.userUrl = selectedUrl!
+            userDetailVC.titleText = userName!
         }
     }
 }

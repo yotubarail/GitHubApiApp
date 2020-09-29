@@ -12,6 +12,7 @@ class UserDetailViewController: UIViewController {
     
     var webView: WKWebView!
     var userUrl: String!
+    var titleText: String!
 
     //MARK: - View LifeCycle
     override func viewDidLoad() {
@@ -23,7 +24,7 @@ class UserDetailViewController: UIViewController {
         
         openUrl(urlString: userUrl)
 
-        navigationItem.title = ""
+        navigationItem.title = titleText
     }
     
 

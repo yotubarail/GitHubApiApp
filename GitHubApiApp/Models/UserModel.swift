@@ -19,7 +19,7 @@ class UserModel: SearchModelInput {
 
     func fetchUserData(text: String) {
 
-        guard let url = URL(string: "https://api.github.com/users?q=\(text)") else {
+        guard let url = URL(string: "https://api.github.com/search/users?q=andfactory") else {
             return
         }
         var request = URLRequest(url: url)
@@ -27,7 +27,7 @@ class UserModel: SearchModelInput {
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             if let data = data {
                 do {
-                    let searchedUserData = try JSONDecoder().decode([SearchResult.UserData].self, from: data)
+                    let searchedUserData = try JSONDecoder().decode(SearchResult.self, from: data).items
                     DispatchQueue.main.async {
                         self.userData = searchedUserData
                         dump(self.userData)

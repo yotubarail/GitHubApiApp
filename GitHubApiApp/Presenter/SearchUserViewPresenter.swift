@@ -9,11 +9,12 @@ import Foundation
 
 final class SearchUserViewPresenter {
     
-    var model: SearchModelInput?
+    //MARK: - Vars
+    var model: SearchModelInput!
 
+    //MARK: - Fanction 
     func didTappedSearchButton(searchText: String) {
-        model?.fetchUserData(text: searchText)
+        model.fetchUserData(text: searchText)
         print(searchText)
     }
-   
 }
