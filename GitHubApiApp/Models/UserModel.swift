@@ -7,19 +7,13 @@
 
 import Foundation
 
-protocol SearchModelInput{
-
-    func fetchUserData(text:String)
-}
-
-
-class UserModel: SearchModelInput {
+class UserModel {
     
     var userData: [SearchResult.UserData] = []
 
     func fetchUserData(text: String) {
 
-        guard let url = URL(string: "https://api.github.com/search/users?q=andfactory") else {
+        guard let url = URL(string: "https://api.github.com/search/users?q=\(text)") else {
             return
         }
         var request = URLRequest(url: url)

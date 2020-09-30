@@ -10,6 +10,7 @@ import WebKit
 
 class UserDetailViewController: UIViewController {
     
+    //MARK: - Vars
     var webView: WKWebView!
     var userUrl: String!
     var titleText: String!
@@ -27,7 +28,7 @@ class UserDetailViewController: UIViewController {
         navigationItem.title = titleText
     }
     
-
+    //MARK: - Functions
     func openUrl(urlString: String) {
         let url = URL(string: urlString)
         let request = URLRequest(url: url!)

@@ -13,7 +13,7 @@ class SearchUserViewController: UIViewController {
     
     var model = UserModel()
     private var presenter = SearchUserViewPresenter()
-    var userData = [SearchResult.UserData]()
+    var userData: [SearchResult.UserData] = []
     var selectedUrl: String!
     var userName: String!
     
@@ -27,28 +27,26 @@ class SearchUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // tableViewの設定
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView(frame: .zero)
         
+        // tableViewのcellにxibを設定
         let cellNib = UINib(nibName: "SearchUserTableViewCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "Cell")
         
+        // searchBarの設定
         searchBar.delegate = self
+        searchBar.autocapitalizationType = .none
+        searchBar.keyboardType = .alphabet
         
-        presenter.model = self
-        model.fetchUserData(text: "")
+        model.fetchUserData(text: "yotubarail")
                 
         navigationItem.title = "Search User"
     }
 }
 
-extension SearchUserViewController: SearchModelInput {
-    
-    func fetchUserData(text: String) {
-        
-    }
-}
 
 
 //MARK: - taleView DataSource
@@ -109,6 +107,7 @@ extension SearchUserViewController: UISearchBarDelegate {
         guard let text = searchBar.text else {return}
         presenter.didTappedSearchButton(searchText: text)
         searchBar.setShowsCancelButton(false, animated: true)
+        tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
