@@ -15,6 +15,6 @@ final class SearchUserViewPresenter {
     //MARK: - Function 
     func didTappedSearchButton(searchText: String) {
         model.fetchUserData(text: searchText)
-        print(searchText)
+        print("Receive " + searchText)
     }
 }
