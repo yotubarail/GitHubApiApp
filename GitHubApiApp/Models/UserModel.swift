@@ -9,8 +9,10 @@ import Foundation
 
 class UserModel {
     
-    var userData: [SearchResult.UserData] = []
+    //MARK: - Vars
+    var userData = [SearchResult.UserData]()
 
+    //MARK: - Fetch GitHubUser Data
     func fetchUserData(text: String) {
 
         guard let url = URL(string: "https://api.github.com/search/users?q=\(text)") else {

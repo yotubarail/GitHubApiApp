@@ -9,7 +9,9 @@ import Foundation
 import UIKit
 
 extension UIImage {
+    
     convenience init(url: String) {
+        
         let url = URL(string: url)
         do {
             let data = try Data(contentsOf: url!)

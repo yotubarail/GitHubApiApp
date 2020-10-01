@@ -30,6 +30,7 @@ class UserDetailViewController: UIViewController {
     
     //MARK: - Functions
     func openUrl(urlString: String) {
+        
         let url = URL(string: urlString)
         let request = URLRequest(url: url!)
         webView.load(request as URLRequest)

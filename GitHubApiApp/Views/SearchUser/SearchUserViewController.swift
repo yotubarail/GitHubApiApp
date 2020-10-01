@@ -11,9 +11,8 @@ class SearchUserViewController: UIViewController {
     
     //MARK: - Vars
     
-    var model = UserModel()
     private var presenter = SearchUserViewPresenter()
-    var userData: [SearchResult.UserData] = []
+    var userData = [SearchResult.UserData]()
     var selectedUrl: String!
     var userName: String!
     
@@ -40,10 +39,32 @@ class SearchUserViewController: UIViewController {
         searchBar.delegate = self
         searchBar.autocapitalizationType = .none
         searchBar.keyboardType = .alphabet
-        
-        model.fetchUserData(text: "yotubarail")
                 
         navigationItem.title = "Search User"
+}
+    
+    //MARK: - 動作確認用
+    func loadData() {
+        guard let url = URL(string: "https://api.github.com/search/users?q=\(searchBar.text ?? "")") else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+            if let data = data {
+                do {
+                    let searchedUserData = try JSONDecoder().decode(SearchResult.self, from: data).items
+                    DispatchQueue.main.async {
+                        self.userData = searchedUserData
+                        dump(self.userData)
+                        self.tableView.reloadData()
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        })
+        task.resume()
     }
 }
 
@@ -60,9 +81,10 @@ extension SearchUserViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SearchUserTableViewCell
-        cell.userNameLabel.text = userData[indexPath.row].login
-        cell.avatarImageView.image = UIImage(url: userData[indexPath.row].avatarUrl)
-        cell.userTypeLabel.text = userData[indexPath.row].type
+        let userViewData = userData[indexPath.row]
+        cell.userNameLabel.text = userViewData.login
+        cell.avatarImageView.image = UIImage(url: userViewData.avatarUrl)
+        cell.userTypeLabel.text = userViewData.type
         
         return cell
     }
@@ -76,8 +98,9 @@ extension SearchUserViewController: UITableViewDelegate {
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-        selectedUrl = userData[indexPath.row].url
-        userName = userData[indexPath.row].login
+        let userViewData = userData[indexPath.row]
+        selectedUrl = userViewData.url
+        userName = userViewData.login
         performSegue(withIdentifier: "showUserDetail", sender: nil)
     }
         
@@ -107,7 +130,7 @@ extension SearchUserViewController: UISearchBarDelegate {
         guard let text = searchBar.text else {return}
         presenter.didTappedSearchButton(searchText: text)
         searchBar.setShowsCancelButton(false, animated: true)
-        tableView.reloadData()
+        loadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -115,5 +138,12 @@ extension SearchUserViewController: UISearchBarDelegate {
         searchBar.endEditing(true)
         searchBar.text = ""
         searchBar.setShowsCancelButton(false, animated: true)
+    }
+}
+
+extension SearchUserViewController: UserView {
+    func updateView() {
+        
+        tableView.reloadData()
     }
 }

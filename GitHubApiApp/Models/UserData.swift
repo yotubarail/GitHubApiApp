@@ -8,6 +8,7 @@
 import Foundation
 
 struct SearchResult: Codable {
+    
     var items: [UserData]
     
     struct UserData: Codable, Identifiable, Equatable {
