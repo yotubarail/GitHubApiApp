@@ -45,6 +45,7 @@ class SearchUserViewController: UIViewController {
     
     //MARK: - 動作確認用
     func loadData() {
+        showProgress()
         guard let url = URL(string: "https://api.github.com/search/users?q=\(searchBar.text ?? "")") else {
             return
         }
@@ -58,6 +59,7 @@ class SearchUserViewController: UIViewController {
                         self.userData = searchedUserData
                         dump(self.userData)
                         self.tableView.reloadData()
+                        self.hideProgress()
                     }
                 } catch {
                     print(error.localizedDescription)

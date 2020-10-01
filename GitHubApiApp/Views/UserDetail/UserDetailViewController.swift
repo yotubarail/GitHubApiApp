@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class UserDetailViewController: UIViewController {
+class UserDetailViewController: UIViewController, WKNavigationDelegate {
     
     //MARK: - Vars
     var webView: WKWebView!
@@ -23,6 +23,8 @@ class UserDetailViewController: UIViewController {
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         view = webView
         
+        webView.navigationDelegate = self
+        
         openUrl(urlString: userUrl)
 
         navigationItem.title = titleText
@@ -34,5 +36,13 @@ class UserDetailViewController: UIViewController {
         let url = URL(string: urlString)
         let request = URLRequest(url: url!)
         webView.load(request as URLRequest)
+    }
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        showProgress()
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        hideProgress()
     }
 }
