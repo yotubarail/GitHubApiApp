@@ -46,27 +46,37 @@ class SearchUserViewController: UIViewController {
     //MARK: - 動作確認用
     func loadData() {
         showProgress()
-        guard let url = URL(string: "https://api.github.com/search/users?q=\(searchBar.text ?? "")") else {
+        let urlString = "https://api.github.com/search/users?q=\(searchBar.text!)"
+        let encode = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        guard let url = URL(string: encode) else {
             return
         }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-            if let data = data {
-                do {
-                    let searchedUserData = try JSONDecoder().decode(SearchResult.self, from: data).items
-                    DispatchQueue.main.async {
-                        self.userData = searchedUserData
-                        dump(self.userData)
-                        self.tableView.reloadData()
-                        self.hideProgress()
+        if searchBar.text == "" {
+            self.errorHUD()
+        } else {
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                if let data = data {
+                    do {
+                        let searchedUserData = try JSONDecoder().decode(SearchResult.self, from: data).items
+                        DispatchQueue.main.async {
+                            self.userData = searchedUserData
+                            dump(self.userData)
+                            if self.userData == [] {
+                                self.errorHUD()
+                            } else {
+                                self.tableView.reloadData()
+                                self.hideProgress()
+                            }
+                        }
+                    } catch {
+                        print(error.localizedDescription)
                     }
-                } catch {
-                    print(error.localizedDescription)
                 }
-            }
-        })
-        task.resume()
+            })
+            task.resume()
+        }
     }
 }
 

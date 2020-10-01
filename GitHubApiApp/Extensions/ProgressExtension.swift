@@ -16,4 +16,8 @@ extension UIViewController {
     func hideProgress() {
         HUD.hide()
     }
+    
+    func errorHUD() {
+        HUD.flash(.label("ユーザーが見つかりません"), delay: 2)
+    }
 }
