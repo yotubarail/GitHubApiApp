@@ -47,12 +47,12 @@ class SearchUserViewController: UIViewController {
     func loadData() {
         
         showProgress()
-        let urlString = "https://api.github.com/search/users?q=\(searchBar.text!.components(separatedBy: CharacterSet(charactersIn: " 　")))"
+        let urlString = "https://api.github.com/search/users?q=\(searchBar.text!)"
         let encode = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         guard let url = URL(string: encode) else {
             return
         }
-        if searchBar.text == "" {
+        if searchBar.text!.trimmingCharacters(in: .whitespaces) == "" {
             self.errorHUD()
         } else {
             var request = URLRequest(url: url)
@@ -156,7 +156,7 @@ extension SearchUserViewController: UISearchBarDelegate {
 
 extension SearchUserViewController: UserView {
     func reloadData(_ users: [SearchResult.UserData]) {
-        
+
         userData = users
         print(users)
         DispatchQueue.main.async {

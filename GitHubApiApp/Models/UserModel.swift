@@ -13,9 +13,9 @@ class UserModel {
     var userData = [SearchResult.UserData]()
     
     //MARK: - Fetch GitHubUser Data
-    func fetchUserData(text: String) {
+    func fetchUserData(text: String, completion: () -> Void) {
         
-        let urlString = "https://api.github.com/search/users?q=\(text)"
+        let urlString = "https://api.github.com/search/users?q=\(text.trimmingCharacters(in: .whitespaces))"
         let encode = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         guard let url = URL(string: encode) else {
             return

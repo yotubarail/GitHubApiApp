@@ -27,7 +27,8 @@ final class SearchUserViewPresenter: Input {
     func didTappedSearchButton(searchText: String) {
 
         print("Receive " + searchText)
-        model.fetchUserData(text: searchText)
-        view?.reloadData(model.userData)
+        model.fetchUserData(text: searchText, completion: {
+            view?.reloadData(model.userData)
+        })
     }
 }
