@@ -38,11 +38,15 @@ class UserDetailViewController: UIViewController, WKNavigationDelegate {
         webView.load(request as URLRequest)
     }
     
+    //MARK: - Navigation Delegate
+    
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        
         showProgress()
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        
         hideProgress()
     }
 }

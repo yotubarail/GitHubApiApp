@@ -11,10 +11,9 @@ class UserModel {
     
     //MARK: - Vars
     var userData = [SearchResult.UserData]()
-
+    
     //MARK: - Fetch GitHubUser Data
     func fetchUserData(text: String) {
-
         
         let urlString = "https://api.github.com/search/users?q=\(text)"
         let encode = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
@@ -27,10 +26,8 @@ class UserModel {
             if let data = data {
                 do {
                     let searchedUserData = try JSONDecoder().decode(SearchResult.self, from: data).items
-                    DispatchQueue.main.async {
-                        self.userData = searchedUserData
-                        dump(self.userData)
-                    }
+                    self.userData = searchedUserData
+                    dump(self.userData)
                 } catch {
                     print(error.localizedDescription)
                 }

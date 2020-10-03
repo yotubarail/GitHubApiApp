@@ -45,6 +45,7 @@ class SearchUserViewController: UIViewController {
     
     //MARK: - 動作確認用
     func loadData() {
+        
         showProgress()
         let urlString = "https://api.github.com/search/users?q=\(searchBar.text!)"
         let encode = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
@@ -62,11 +63,11 @@ class SearchUserViewController: UIViewController {
                         let searchedUserData = try JSONDecoder().decode(SearchResult.self, from: data).items
                         DispatchQueue.main.async {
                             self.userData = searchedUserData
-                            dump(self.userData)
                             if self.userData == [] {
                                 self.errorHUD()
                             } else {
                                 self.tableView.reloadData()
+                                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                                 self.hideProgress()
                             }
                         }
@@ -142,7 +143,7 @@ extension SearchUserViewController: UISearchBarDelegate {
         guard let text = searchBar.text else {return}
         presenter.didTappedSearchButton(searchText: text)
         searchBar.setShowsCancelButton(false, animated: true)
-        loadData()
+        loadData()  // 動作確認用
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -154,8 +155,18 @@ extension SearchUserViewController: UISearchBarDelegate {
 }
 
 extension SearchUserViewController: UserView {
-    func updateView() {
+    func reloadData(_ users: [SearchResult.UserData]) {
         
-        tableView.reloadData()
+        userData = users
+        print(users)
+        DispatchQueue.main.async {
+            if self.userData == [] {
+                self.errorHUD()
+            } else {
+                self.tableView.reloadData()
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.hideProgress()
+            }
+        }
     }
 }

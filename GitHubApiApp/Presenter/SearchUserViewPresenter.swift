@@ -7,21 +7,27 @@
 
 import Foundation
 
-protocol UserView: class {
-    func updateView()
+protocol Input {
+    func didTappedSearchButton(searchText: String)
 }
 
-final class SearchUserViewPresenter {
+protocol UserView {
+    func reloadData(_ users: [SearchResult.UserData])
+}
+
+final class SearchUserViewPresenter: Input {
     
     //MARK: - Vars
     
     var model = UserModel()
+    private var view: UserView?
     
     //MARK: - Function
     
     func didTappedSearchButton(searchText: String) {
-        
-        model.fetchUserData(text: searchText)
+
         print("Receive " + searchText)
+        model.fetchUserData(text: searchText)
+        view?.reloadData(model.userData)
     }
 }
