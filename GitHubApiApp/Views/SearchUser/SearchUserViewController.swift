@@ -47,7 +47,7 @@ class SearchUserViewController: UIViewController {
     func loadData() {
         
         showProgress()
-        let urlString = "https://api.github.com/search/users?q=\(searchBar.text!)"
+        let urlString = "https://api.github.com/search/users?q=\(searchBar.text!.components(separatedBy: CharacterSet(charactersIn: " 　")))"
         let encode = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         guard let url = URL(string: encode) else {
             return
