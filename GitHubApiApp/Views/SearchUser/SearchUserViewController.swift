@@ -143,7 +143,7 @@ extension SearchUserViewController: UISearchBarDelegate {
         guard let text = searchBar.text else {return}
         presenter.didTappedSearchButton(searchText: text)
         searchBar.setShowsCancelButton(false, animated: true)
-        loadData()  // 動作確認用
+//        loadData()  // 動作確認用
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
