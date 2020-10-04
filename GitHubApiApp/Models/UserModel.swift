@@ -11,11 +11,13 @@ class UserModel {
     
     //MARK: - Vars
     var userData = [SearchResult.UserData]()
-
+    
     //MARK: - Fetch GitHubUser Data
-    func fetchUserData(text: String) {
-
-        guard let url = URL(string: "https://api.github.com/search/users?q=\(text)") else {
+    func fetchUserData(text: String, completion: @escaping ([SearchResult.UserData]) -> Void) {
+        
+        let urlString = "https://api.github.com/search/users?q=\(text.trimmingCharacters(in: .whitespaces))"
+        let encode = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        guard let url = URL(string: encode) else {
             return
         }
         var request = URLRequest(url: url)
@@ -24,10 +26,9 @@ class UserModel {
             if let data = data {
                 do {
                     let searchedUserData = try JSONDecoder().decode(SearchResult.self, from: data).items
-                    DispatchQueue.main.async {
-                        self.userData = searchedUserData
-                        dump(self.userData)
-                    }
+                    self.userData = searchedUserData
+                    dump(self.userData)
+                    completion(self.userData)
                 } catch {
                     print(error.localizedDescription)
                 }

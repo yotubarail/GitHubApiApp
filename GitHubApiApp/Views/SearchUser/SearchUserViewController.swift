@@ -45,28 +45,39 @@ class SearchUserViewController: UIViewController {
     
     //MARK: - 動作確認用
     func loadData() {
+        
         showProgress()
-        guard let url = URL(string: "https://api.github.com/search/users?q=\(searchBar.text ?? "")") else {
+        let urlString = "https://api.github.com/search/users?q=\(searchBar.text!)"
+        let encode = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        guard let url = URL(string: encode) else {
             return
         }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-            if let data = data {
-                do {
-                    let searchedUserData = try JSONDecoder().decode(SearchResult.self, from: data).items
-                    DispatchQueue.main.async {
-                        self.userData = searchedUserData
-                        dump(self.userData)
-                        self.tableView.reloadData()
-                        self.hideProgress()
+        if searchBar.text!.trimmingCharacters(in: .whitespaces) == "" {
+            self.errorHUD()
+        } else {
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                if let data = data {
+                    do {
+                        let searchedUserData = try JSONDecoder().decode(SearchResult.self, from: data).items
+                        DispatchQueue.main.async {
+                            self.userData = searchedUserData
+                            if self.userData == [] {
+                                self.errorHUD()
+                            } else {
+                                self.tableView.reloadData()
+                                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                                self.hideProgress()
+                            }
+                        }
+                    } catch {
+                        print(error.localizedDescription)
                     }
-                } catch {
-                    print(error.localizedDescription)
                 }
-            }
-        })
-        task.resume()
+            })
+            task.resume()
+        }
     }
 }
 
@@ -132,7 +143,7 @@ extension SearchUserViewController: UISearchBarDelegate {
         guard let text = searchBar.text else {return}
         presenter.didTappedSearchButton(searchText: text)
         searchBar.setShowsCancelButton(false, animated: true)
-        loadData()
+//        loadData()  // 動作確認用
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -144,8 +155,18 @@ extension SearchUserViewController: UISearchBarDelegate {
 }
 
 extension SearchUserViewController: UserView {
-    func updateView() {
-        
-        tableView.reloadData()
+    func reloadData(_ users: [SearchResult.UserData]) {
+
+        userData = users
+        print(users)
+        DispatchQueue.main.async {
+            if self.userData == [] {
+                self.errorHUD()
+            } else {
+                self.tableView.reloadData()
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.hideProgress()
+            }
+        }
     }
 }
