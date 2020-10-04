@@ -1,5 +1,8 @@
 # GitHubApiApp
 
+## できでいないこと
+・PresenterからViewまで取得した情報を受け渡すことができていない  
+
 ## 使用したライブラリ
 <a href="https://github.com/pkluz/PKHUD">PKHUD</a>  
 ロード中の表すために使用しました
@@ -11,3 +14,4 @@
 
 ## これからつけたい機能
 ・WebViewの画面で戻ったり、進んだりするボタンをつけWeb画面の使い心地をブラウザに近づけたい。  
+
