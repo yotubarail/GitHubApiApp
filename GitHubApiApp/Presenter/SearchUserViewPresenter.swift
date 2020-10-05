@@ -21,7 +21,7 @@ final class SearchUserViewPresenter: Input {
     
     //MARK: - Vars
     var model = UserModel()
-    private weak var view: UserView!
+    public weak var view: UserView!
     
     //MARK: - Function
     func didTappedSearchButton(searchText: String) {
@@ -29,7 +29,7 @@ final class SearchUserViewPresenter: Input {
         print("Receive " + searchText)
         model.fetchUserData(text: searchText, completion: { result in
             print("Result",  result)
-//            self.view.reloadData(result) // Unexpectedly found nil while implicitly unwrapping an Optional value
+            self.view.reloadData(result) // Unexpectedly found nil while implicitly unwrapping an Optional value
         })
     }
 }

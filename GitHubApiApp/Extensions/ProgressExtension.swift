@@ -17,7 +17,11 @@ extension UIViewController {
         HUD.hide()
     }
     
-    func errorHUD() {
+    func noUserErrorHUD() {
         HUD.flash(.label("ユーザーが見つかりません"), delay: 2)
+    }
+    
+    func blankErrorHUD() {
+        HUD.flash(.label("ユーザー名を入力してください"), delay: 2)
     }
 }
