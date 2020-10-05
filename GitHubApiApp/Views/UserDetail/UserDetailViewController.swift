@@ -39,7 +39,6 @@ class UserDetailViewController: UIViewController, WKNavigationDelegate {
     }
     
     //MARK: - Navigation Delegate
-    
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         
         showProgress()

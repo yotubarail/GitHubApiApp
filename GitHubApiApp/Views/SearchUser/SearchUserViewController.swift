@@ -10,19 +10,16 @@ import UIKit
 class SearchUserViewController: UIViewController {
     
     //MARK: - Vars
-    
     private var presenter = SearchUserViewPresenter()
     var userData = [SearchResult.UserData]()
     var selectedUrl: String!
     var userName: String!
     
     //MARK: - IBOutlet
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     //MARK: - View LifeCycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,7 +38,7 @@ class SearchUserViewController: UIViewController {
         searchBar.keyboardType = .alphabet
                 
         navigationItem.title = "Search User"
-}
+    }
     
     //MARK: - 動作確認用
     func loadData() {
@@ -84,7 +81,6 @@ class SearchUserViewController: UIViewController {
 
 
 //MARK: - taleView DataSource
-
 extension SearchUserViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,7 +101,6 @@ extension SearchUserViewController: UITableViewDataSource {
 
 
 //MARK: - tableView Delegate
-
 extension SearchUserViewController: UITableViewDelegate {
     
     func tableView(_ table: UITableView,didSelectRowAt indexPath: IndexPath) {
@@ -129,7 +124,6 @@ extension SearchUserViewController: UITableViewDelegate {
 
 
 //MARK: - searchBar Delegate
-
 extension SearchUserViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -154,19 +148,18 @@ extension SearchUserViewController: UISearchBarDelegate {
     }
 }
 
+//MARK: - Protocol UserView
 extension SearchUserViewController: UserView {
     func reloadData(_ users: [SearchResult.UserData]) {
 
         userData = users
         print(users)
-        DispatchQueue.main.async {
-            if self.userData == [] {
-                self.errorHUD()
-            } else {
-                self.tableView.reloadData()
-                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                self.hideProgress()
-            }
+        if self.userData == [] {
+            self.errorHUD()
+        } else {
+            self.tableView.reloadData()
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            self.hideProgress()
         }
     }
 }
