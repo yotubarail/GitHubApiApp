@@ -8,7 +8,7 @@
 ロード中の表すために使用しました。  
 
 <a href="https://github.com/dzenbot/DZNEmptyDataSet">DZNEmptyDataSet</a>  
-tableViewの要素が0の時に入力を促す文を表示させるために使用しました。  
+tableViewの要素が0の時にUISearchBarへの入力を促す文を表示させるために使用しました。  
 
 ## 工夫した点
 ・UISearchBarに日本語入力をするとロードの状態が続いてしまうため、エンコードを行うようにしました。  
@@ -20,4 +20,4 @@ tableViewの要素が0の時に入力を促す文を表示させるために使�
 
 ## その他
 ・WebViewの画面においてWKWebViewとSFSafariViewのどちらを使用するかで迷いましたが、UINavigationControllerでの画面遷移が想定されていたのでWKWebViewを使用しました。  
-・使用したライブラリ
+・使用したライブラリが少なかったので、今回はLicensePlistは使用せず自分でライセンス情報を加えました。
