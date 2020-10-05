@@ -3,6 +3,7 @@
 ## できでいないこと
 <ul>
 <li>PresenterからViewまで取得した情報を受け渡すことができていない。</li>
+</ul>
 
 ## 使用したライブラリ
 <a href="https://github.com/pkluz/PKHUD">PKHUD</a>  
@@ -20,8 +21,9 @@ tableViewの要素が0の時にUISearchBarへの入力を促す文を表示さ�
 </ul>
 
 ## これからつけたい機能
+<ul>
 <li>WebViewの画面で戻ったり、進んだりするボタンをつけWeb画面の使い心地をブラウザに近づけたい。</li>
-
+</ul>
 ## その他
 <ul>
 <li>WebViewの画面においてWKWebViewとSFSafariViewのどちらを使用するかで迷いましたが、UINavigationControllerでの画面遷移が想定されていたのでWKWebViewを使用しました。</li>  
