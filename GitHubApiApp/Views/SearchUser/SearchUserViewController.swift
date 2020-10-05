@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
 class SearchUserViewController: UIViewController {
     
@@ -27,6 +28,8 @@ class SearchUserViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView(frame: .zero)
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
         
         // tableViewのcellにxibを設定
         let cellNib = UINib(nibName: "SearchUserTableViewCell", bundle: nil)
@@ -62,6 +65,7 @@ class SearchUserViewController: UIViewController {
                             self.userData = searchedUserData
                             if self.userData == [] {
                                 self.errorHUD()
+                                self.tableView.reloadData()
                             } else {
                                 self.tableView.reloadData()
                                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
@@ -137,7 +141,7 @@ extension SearchUserViewController: UISearchBarDelegate {
         guard let text = searchBar.text else {return}
         presenter.didTappedSearchButton(searchText: text)
         searchBar.setShowsCancelButton(false, animated: true)
-//        loadData()  // 動作確認用
+        loadData()  // 動作確認用
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -150,16 +154,26 @@ extension SearchUserViewController: UISearchBarDelegate {
 
 //MARK: - Protocol UserView
 extension SearchUserViewController: UserView {
+    
     func reloadData(_ users: [SearchResult.UserData]) {
 
         userData = users
         print(users)
         if self.userData == [] {
             self.errorHUD()
+            self.tableView.reloadData()
         } else {
             self.tableView.reloadData()
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             self.hideProgress()
         }
+    }
+}
+
+//MARK: - DZNEmptyDataSetSource, Delegate
+extension SearchUserViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "検索したいユーザー名を入力してください")
     }
 }

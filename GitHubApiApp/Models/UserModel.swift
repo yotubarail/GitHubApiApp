@@ -26,9 +26,11 @@ class UserModel {
             if let data = data {
                 do {
                     let searchedUserData = try JSONDecoder().decode(SearchResult.self, from: data).items
-                    self.userData = searchedUserData
-                    dump(self.userData)
-                    completion(self.userData)
+                    DispatchQueue.main.async {
+                        self.userData = searchedUserData
+                        dump(self.userData)
+                        completion(self.userData)
+                    }
                 } catch {
                     print(error.localizedDescription)
                 }
