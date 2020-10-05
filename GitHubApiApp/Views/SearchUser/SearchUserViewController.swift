@@ -39,47 +39,48 @@ class SearchUserViewController: UIViewController {
         searchBar.delegate = self
         searchBar.autocapitalizationType = .none
         searchBar.keyboardType = .alphabet
+        
+        presenter.view = self
                 
         navigationItem.title = "Search User"
     }
     
     //MARK: - 動作確認用
-    func loadData() {
-        
-        showProgress()
-        let urlString = "https://api.github.com/search/users?q=\(searchBar.text!)"
-        let encode = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        guard let url = URL(string: encode) else {
-            return
-        }
-        if searchBar.text!.trimmingCharacters(in: .whitespaces) == "" {
-            self.errorHUD()
-        } else {
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-                if let data = data {
-                    do {
-                        let searchedUserData = try JSONDecoder().decode(SearchResult.self, from: data).items
-                        DispatchQueue.main.async {
-                            self.userData = searchedUserData
-                            if self.userData == [] {
-                                self.errorHUD()
-                                self.tableView.reloadData()
-                            } else {
-                                self.tableView.reloadData()
-                                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                                self.hideProgress()
-                            }
-                        }
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                }
-            })
-            task.resume()
-        }
-    }
+//    func loadData() {
+//
+//        let urlString = "https://api.github.com/search/users?q=\(searchBar.text!)"
+//        let encode = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+//        guard let url = URL(string: encode) else {
+//            return
+//        }
+//        if searchBar.text!.trimmingCharacters(in: .whitespaces) == "" {
+//            self.errorHUD()
+//        } else {
+//            var request = URLRequest(url: url)
+//            request.httpMethod = "GET"
+//            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+//                if let data = data {
+//                    do {
+//                        let searchedUserData = try JSONDecoder().decode(SearchResult.self, from: data).items
+//                        DispatchQueue.main.async {
+//                            self.userData = searchedUserData
+//                            if self.userData == [] {
+//                                self.errorHUD()
+//                                self.tableView.reloadData()
+//                            } else {
+//                                self.tableView.reloadData()
+//                                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+//                                self.hideProgress()
+//                            }
+//                        }
+//                    } catch {
+//                        print(error.localizedDescription)
+//                    }
+//                }
+//            })
+//            task.resume()
+//        }
+//    }
 }
 
 
@@ -138,10 +139,14 @@ extension SearchUserViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         searchBar.endEditing(true)
-        guard let text = searchBar.text else {return}
-        presenter.didTappedSearchButton(searchText: text)
         searchBar.setShowsCancelButton(false, animated: true)
-        loadData()  // 動作確認用
+        if searchBar.text!.trimmingCharacters(in: .whitespaces) == "" {
+            self.blankErrorHUD()
+        } else {
+            guard let text = searchBar.text else {return}
+            presenter.didTappedSearchButton(searchText: text)
+            showProgress()
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -160,7 +165,7 @@ extension SearchUserViewController: UserView {
         userData = users
         print(users)
         if self.userData == [] {
-            self.errorHUD()
+            self.noUserErrorHUD()
             self.tableView.reloadData()
         } else {
             self.tableView.reloadData()
@@ -174,6 +179,6 @@ extension SearchUserViewController: UserView {
 extension SearchUserViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: "検索したいユーザー名を入力してください")
+        return NSAttributedString(string: "検索したいユーザー名を\n入力してください")
     }
 }
