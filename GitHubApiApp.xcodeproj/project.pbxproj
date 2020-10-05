@@ -22,6 +22,7 @@
 		5DB08CFF251DD3A3009EE0CE /* SearchUserViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB08CFE251DD3A3009EE0CE /* SearchUserViewPresenter.swift */; };
 		5DB08D0725208578009EE0CE /* UIImageExsention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB08D0625208577009EE0CE /* UIImageExsention.swift */; };
 		5DB08D1825259095009EE0CE /* ProgressExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB08D1725259095009EE0CE /* ProgressExtension.swift */; };
+		5DFBD182252ABFC30036EA1C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5DFBD181252ABFC30036EA1C /* Settings.bundle */; };
 		BBEEBFE077DD40EFDE0E1244 /* Pods_GitHubApiApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D15B7A8CC66C234560CFC36 /* Pods_GitHubApiApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		5DB08CFE251DD3A3009EE0CE /* SearchUserViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewPresenter.swift; sourceTree = "<group>"; };
 		5DB08D0625208577009EE0CE /* UIImageExsention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExsention.swift; sourceTree = "<group>"; };
 		5DB08D1725259095009EE0CE /* ProgressExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressExtension.swift; sourceTree = "<group>"; };
+		5DFBD181252ABFC30036EA1C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		6D15B7A8CC66C234560CFC36 /* Pods_GitHubApiApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubApiApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8573FEBFFC92C149FFFDE5A7 /* Pods-GitHubApiApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubApiApp.release.xcconfig"; path = "Target Support Files/Pods-GitHubApiApp/Pods-GitHubApiApp.release.xcconfig"; sourceTree = "<group>"; };
 		9B6E9BA16E325F9E07B10085 /* Pods-GitHubApiApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubApiApp.debug.xcconfig"; path = "Target Support Files/Pods-GitHubApiApp/Pods-GitHubApiApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		5D54FAA7251C33D10038F0B7 = {
 			isa = PBXGroup;
 			children = (
+				5DFBD181252ABFC30036EA1C /* Settings.bundle */,
 				5D54FAB2251C33D10038F0B7 /* GitHubApiApp */,
 				5D54FAB1251C33D10038F0B7 /* Products */,
 				6520965E9310F50D7F5BE663 /* Pods */,
@@ -235,6 +238,7 @@
 			files = (
 				5D54FAD3251C35560038F0B7 /* SearchUserTableViewCell.xib in Resources */,
 				5D54FAC3251C33D30038F0B7 /* LaunchScreen.storyboard in Resources */,
+				5DFBD182252ABFC30036EA1C /* Settings.bundle in Resources */,
 				5D54FAC0251C33D30038F0B7 /* Assets.xcassets in Resources */,
 				5D54FABB251C33D10038F0B7 /* Main.storyboard in Resources */,
 			);

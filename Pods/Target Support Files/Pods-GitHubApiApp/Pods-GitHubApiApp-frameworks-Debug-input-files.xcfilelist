@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-GitHubApiApp/Pods-GitHubApiApp-frameworks.sh
+${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework
 ${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework
