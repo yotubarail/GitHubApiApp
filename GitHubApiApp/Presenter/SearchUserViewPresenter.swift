@@ -12,7 +12,7 @@ protocol Input {
     func didTappedSearchButton(searchText: String)
 }
 
-protocol UserView {
+protocol UserView: AnyObject {
     
     func reloadData(_ users: [SearchResult.UserData])
 }
@@ -20,16 +20,14 @@ protocol UserView {
 final class SearchUserViewPresenter: Input {
     
     //MARK: - Vars
-    
     var model = UserModel()
-    private var view: UserView!
+    private weak var view: UserView!
     
     //MARK: - Function
-    
     func didTappedSearchButton(searchText: String) {
 
         print("Receive " + searchText)
-        model.fetchUserData(text: searchText, completion: {result in
+        model.fetchUserData(text: searchText, completion: { result in
             print("Result",  result)
             self.view.reloadData(result) // Unexpectedly found nil while implicitly unwrapping an Optional value
         })
