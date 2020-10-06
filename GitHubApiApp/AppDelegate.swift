@@ -12,9 +12,40 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    //MARK: WkWebView Cookie Setup
+    private func storeCookies() {
+        guard let cookies = HTTPCookieStorage.shared.cookies else { return }
+            var cookieObject = [String : AnyObject]()
+            for cookie in cookies {
+                cookieObject[cookie.name] = cookie.properties as AnyObject?
+            }
+        UserDefaults.standard.set(cookieObject, forKey: "cookie")
+    }
 
+    private func useCookies() {
+        guard let cookieObject = UserDefaults.standard.dictionary(forKey: "cookie") else { return }
+        for (_, cookieProperties) in cookieObject {
+            if let cookieProperties = cookieProperties as? [HTTPCookiePropertyKey : Any] {
+                if let cookie = HTTPCookie(properties: cookieProperties ) {
+                    HTTPCookieStorage.shared.setCookie(cookie)
+                }
+            }
+        }
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        storeCookies()
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        storeCookies()
+    }
+    
+ //MARK: Application Open
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        useCookies()
         return true
     }
 
