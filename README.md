@@ -3,6 +3,10 @@
 ## 概要
 GitHub APIを用いてユーザーを探すアプリです。  
 
+<img src="https://raw.githubusercontent.com/yotubarail/GitHubApiApp/develop/README_Image/IMG_0019.PNG" width="30%">　<img src="https://raw.githubusercontent.com/yotubarail/GitHubApiApp/develop/README_Image/IMG_0020.PNG" width="30%">　<img src="https://raw.githubusercontent.com/yotubarail/GitHubApiApp/develop/README_Image/IMG_0021.PNG" width="30%">  
+
+ホーム画面からユーザーの検索を行い、検索で出てきたユーザーの詳細を見ることができます。  
+
 ## 環境
 <ul>
 <li>Xcode12</li>
