@@ -1,5 +1,8 @@
 # GitHubApiApp
 
+## 概要
+GitHub APIを用いてユーザーを探すアプリです。  
+
 ## 環境
 <ul>
 <li>Xcode12</li>
@@ -9,6 +12,8 @@
 </ul>
 
 ## 使用したライブラリ
+CocoaPodsを使用してライブラリの導入を行いました。  
+
 <table border="2" style="border-collapse: collapse">
   <thead>
     <tr>
@@ -35,6 +40,7 @@
 <li>UISearchBarに文字が入っていない場合や、ユーザーが見つからなかった時にPKHUDでエラー表示を出すようにしました。</li>
 <li>使用したライブラリのライセンス情報を端末の設定アプリから見られるようにしました。</li>
 <li>MARKを用いてどの部分のコードが書かれているかわかりやすくしました。</li>
+<li>アプリ内でユーザーがGitHubにログインすることを想定し、cookieの情報を保持させることでアプリ終了後もログイン状態が続くようにしました。</li>
 </ul>
 
 ## これからつけたい機能
@@ -54,4 +60,5 @@
 <li><a href="https://qiita.com/uhooi/items/0a57cad6e7ca8e30f09a">OSSのライセンスを設定アプリ内に表示する方法</a></li>
 <li><a href="https://github.com/peaks-cc/iOS_architecture_samplecode">iOS_architecture_samplecode</a></li>
 <li><a href="https://qiita.com/hicka04/items/25be38a90fdde29c97c2">【Swift】MVCから脱却したいのでMVPの勉強をした</a></li>
+<li a href="https://qiita.com/i_nak/items/be0fac91bdc68aa165db">【Swift】WebViewのCookieを永続的に保持しておきたい</li>
 </ul>
