@@ -44,43 +44,6 @@ class SearchUserViewController: UIViewController {
                 
         navigationItem.title = "Search User"
     }
-    
-    //MARK: - 動作確認用
-//    func loadData() {
-//
-//        let urlString = "https://api.github.com/search/users?q=\(searchBar.text!)"
-//        let encode = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-//        guard let url = URL(string: encode) else {
-//            return
-//        }
-//        if searchBar.text!.trimmingCharacters(in: .whitespaces) == "" {
-//            self.errorHUD()
-//        } else {
-//            var request = URLRequest(url: url)
-//            request.httpMethod = "GET"
-//            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-//                if let data = data {
-//                    do {
-//                        let searchedUserData = try JSONDecoder().decode(SearchResult.self, from: data).items
-//                        DispatchQueue.main.async {
-//                            self.userData = searchedUserData
-//                            if self.userData == [] {
-//                                self.errorHUD()
-//                                self.tableView.reloadData()
-//                            } else {
-//                                self.tableView.reloadData()
-//                                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-//                                self.hideProgress()
-//                            }
-//                        }
-//                    } catch {
-//                        print(error.localizedDescription)
-//                    }
-//                }
-//            })
-//            task.resume()
-//        }
-//    }
 }
 
 
