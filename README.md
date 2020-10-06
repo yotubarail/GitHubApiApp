@@ -7,6 +7,8 @@ GitHub APIを用いてユーザーを探すアプリです。
 
 ホーム画面からユーザーの検索を行い、検索で出てきたユーザーの詳細を見ることができます。  
 
+<br>
+
 ## 環境
 <ul>
 <li>Xcode12</li>
@@ -14,6 +16,8 @@ GitHub APIを用いてユーザーを探すアプリです。
 <li>iOS11以上対象</li>
 <li>iPhone8、iPhoneSE、iPhone8Plus、iPhoneXS, iPhoneXS Max, iPhoneXR対応</li>
 </ul>
+
+<br>
 
 ## 使用したライブラリ
 CocoaPodsを使用してライブラリの導入を行いました。  
@@ -37,6 +41,8 @@ CocoaPodsを使用してライブラリの導入を行いました。
 </tbody>  
 </table>
 
+<br>
+
 ## 工夫した点
 <ul>
 <li>UISearchBarに日本語入力をするとロードの状態が続いてしまうため、エンコードを行うようにしました。</li>
@@ -47,10 +53,16 @@ CocoaPodsを使用してライブラリの導入を行いました。
 <li>アプリ内でユーザーがGitHubにログインすることを想定し、cookieの情報を保持させることでアプリ終了後もログイン状態が続くようにしました。</li>
 </ul>
 
+<br>
+
 ## これからつけたい機能
 <ul>
-<li>WebViewの画面で戻ったり、進んだりするボタンをつけWeb画面の使い心地をブラウザに近づけたい。</li>
+<li>WebViewの画面で戻ったり、進んだりするボタンをつけWeb画面の使い心地をブラウザに近づけたいです。</li>
+<li>検索結果に多くのユーザーが表示される場合、おそらく画像の表示の都合のためスクロールがスムーズではない時がありました。SDWebImageでのキャッシュ等の方法を考えていきたいです。</li>
+<li>学習を進め、テストに関してのコードを書いていきたいです。</li>
 </ul>
+
+<br>
 
 ## その他（迷ったところ、反省点等）
 <ul>
@@ -59,10 +71,12 @@ CocoaPodsを使用してライブラリの導入を行いました。
 <li>MVPでコードを書くことは初めてだったため『iOSアプリ設計パターン入門』を購入したところ発送日が提出期限の日でした。もっと早く設計に関して勉強を進めるべきでした。</li>
 </ul>
 
+<br>
+
 ## 参考にしたサイト
 <ul>
 <li><a href="https://qiita.com/uhooi/items/0a57cad6e7ca8e30f09a">OSSのライセンスを設定アプリ内に表示する方法</a></li>
 <li><a href="https://github.com/peaks-cc/iOS_architecture_samplecode">iOS_architecture_samplecode</a></li>
 <li><a href="https://qiita.com/hicka04/items/25be38a90fdde29c97c2">【Swift】MVCから脱却したいのでMVPの勉強をした</a></li>
-<li a href="https://qiita.com/i_nak/items/be0fac91bdc68aa165db">【Swift】WebViewのCookieを永続的に保持しておきたい</li>
+<li><a href="https://qiita.com/i_nak/items/be0fac91bdc68aa165db">【Swift】WebViewのCookieを永続的に保持しておきたい</a></li>
 </ul>
