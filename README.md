@@ -38,6 +38,10 @@ CocoaPodsを使用してライブラリの導入を行いました。
         <td><a href="https://github.com/dzenbot/DZNEmptyDataSet">DZNEmptyDataSet</a></td>
         <td>tableViewの要素が0の時にUISearchBarへの入力を促す文を表示させるために使用しました。</td>
     </tr>
+  <tr>
+        <td><a href="https://github.com/SDWebImage/SDWebImage">SDWebImage</a></td>
+        <td>プロフィール画像をキャッシュさせるために使用しました。</td>
+    </tr>
 </tbody>  
 </table>
 
@@ -58,7 +62,6 @@ CocoaPodsを使用してライブラリの導入を行いました。
 ## これからつけたい機能
 <ul>
 <li>WebViewの画面で戻ったり、進んだりするボタンをつけWeb画面の使い心地をブラウザに近づけたいです。</li>
-<li>検索結果に多くのユーザーが表示される場合、おそらく画像の表示の都合のためスクロールがスムーズではない時がありました。SDWebImageでのキャッシュ等の方法を考えていきたいです。</li>
 <li>学習を進め、テストに関してのコードを書いていきたいです。</li>
 </ul>
 
