@@ -8,5 +8,5 @@ target 'GitHubApiApp' do
   # Pods for GitHubApiApp
 pod 'PKHUD'
 pod 'DZNEmptyDataSet'
-
+pod 'SDWebImage'
 end

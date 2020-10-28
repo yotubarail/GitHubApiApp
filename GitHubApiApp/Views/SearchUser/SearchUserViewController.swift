@@ -7,6 +7,7 @@
 
 import UIKit
 import DZNEmptyDataSet
+import SDWebImage
 
 class SearchUserViewController: UIViewController {
     
@@ -60,7 +61,7 @@ extension SearchUserViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SearchUserTableViewCell
         let userViewData = userData[indexPath.row]
         cell.userNameLabel.text = userViewData.login
-        cell.avatarImageView.image = UIImage(url: userViewData.avatarUrl)
+        cell.avatarImageView.sd_setImage(with: URL(string: userViewData.avatarUrl), completed: nil)
         cell.userTypeLabel.text = userViewData.type
         
         return cell
